@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="countdowin label">2025 in</div>
+    <div id="countdown-timer"></div>
+    <script>
+        const targetDate = new Date('2025-01-01T00:00:00')
+        function countDown(){
+            const dateNow = new Date();
+            const dateDifference = targetDate - dateNow;
+            const days = Math.floor(dateDifference/(1000*60*60*24))
+            const hours = Math.floor(dateDifference%(1000*60*60*24)/(1000*60*60))
+            const minutes = Math.floor(dateDifference%(1000*60*60)/(1000*60))
+            const seconds = Math.floor(dateDifference%(1000*60)/1000)
+            document.getElementById('countdown-timer').textContent= `${days}d${hours}h${minutes}m${seconds}s`
+            setTimeout(countDown,1000)
+        }
+        countDown() 
+    </script>
+</body>
+</html>
