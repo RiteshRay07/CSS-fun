@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(225, 231, 134);
+}
+
+.wrapper{
+    padding:40px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, .5);
+}
+
+.wrapper .content-box{
+    padding: 13px 20px 0;
+    border: 2px solid #bfbfbf;
+    border-radius:10px;
+}
+.wrapper .inputfield{
+    padding: 13px 20px 0;
+    position: absolute;
+    opacity: 0;
+    z-index: -99;
+}
+.content-box .content{
+    margin-top: 12px;
+    padding:12px 0;
+    flex-wrap:wrap;
+    border-top:1px solid #bfbfbf;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content .result-details{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 140px);
+}
+.result-details li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.content button{
+    width: 110px;
+    border: none;
+    padding: 10px 0;
+    color: #111;
+    font-weight: 600;
+    background-color: rgb(215, 228, 36);
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.content button:active{
+    transform: scale(.97);
+}
+.typing-text p span{
+    position: relative;
+}
+.typing-text p span.active{
+    color:rgb(228, 125, 7) ;
+}
+.typing-text p span.correct{
+    color: green;
+}
+.typing-text p span.incorrect{
+    color: red;
+}
+::selection{
+    color: #fff;
+    background: rgb(228, 125, 7);
+}

@@ -1,0 +1,75 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+h1{
+    color: #ccc;
+    background: #534040;
+    border-radius: 6px;
+}
+.head{
+    text-align: center;
+    border:2px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+.pcenter{
+    color:#534040;
+    text-align: center;
+    font-size: 17px;
+}
+.buttons{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+button{
+    font-size: 20px;
+    padding: 2rem 5rem;
+    cursor: pointer;
+}
+
+#startbtn{
+    background-color: #534040;
+    color: #ccc;
+    border: #ccc;
+    border-radius: 8px;
+    transition: transform .2s;
+}
+#startbtn:hover{
+    transform: scale(1.06);
+}
+
+#endbtn{
+    background-color: #ccc;
+    color: #534040;
+    border: #534040;
+    border-radius: 8px;
+    transition: transform .2s;
+}
+#endbtn:hover{
+    transform: scale(1.06);
+}
+.logs{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+}
+#strokeLog{
+    text-align: center;
+    margin-top:24px;
+    height:230px;
+    width:38%;
+    border: 2px solid #534040;
+    border-radius: 8px;
+    background-color: #f5d7d7;
+}
+#keyLog{
+    margin-top:24px;
+    height:230px;
+    width:38%;
+    border: 2px solid #534040;
+    border-radius: 8px;
+    background-color: #f5d7d7;
+}
