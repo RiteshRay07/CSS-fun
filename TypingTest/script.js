@@ -23,8 +23,6 @@ function loadParagraph(){
     for(const char of paragraph[randomIndex]){
         typingText.innerHTML+= `<span>${char}</span>`;
     }
-    console.log( typingText.innerHTML)  
-    console.log(typingText.querySelectorAll('span')[0])
     typingText.querySelectorAll('span')[0].classList.add('active');
     document.addEventListener('keydown',()=>{
         inputField.focus()
@@ -39,7 +37,6 @@ function loadParagraph(){
 function initTyping(){
     const char = typingText.querySelectorAll('span');
     const typedChar = inputField.value.charAt(charIndex);
-    console.log(char.length)
     if(charIndex<char.length && timeLeft>0){
         if(!isTyping){
             timer = setInterval(initTime,1000);
@@ -47,12 +44,10 @@ function initTyping(){
         }
         if(char[charIndex].innerText === typedChar){
             char[charIndex].classList.add('correct');
-            console.log('correct');
         }
         else{
             mistakes++;
             char[charIndex].classList.add('incorrect');
-            console.log(mistakes)
         }
         charIndex++;
         char[charIndex].classList.add('active');
