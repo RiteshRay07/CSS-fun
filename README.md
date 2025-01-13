@@ -1,3 +1,4 @@
+
 # SME Question Uploader Platform
 
 A modern web application for educators to create, manage, and analyze assessment questions.
@@ -23,178 +24,63 @@ A modern web application for educators to create, manage, and analyze assessment
 - **React-Latex-next**
 - **jsPDF**
 
----
+## Component Documentation
 
-## Folder Structure
+### QuestionForm Component
 
-Here's the comprehensive folder structure of the Question Uploader project with descriptions:
+#### Overview
+The `QuestionForm` component is a powerful question generation interface combining AI capabilities with Excel/CSV upload functionality.
 
-
-
-```bash
-question-uploader/
-├── src/
-│   ├── axios/                 # API configurations and interceptors
-│   │   ├── questionGenAPI.js  # Question generation API configuration
-│   │   └── smeQgenApi.js      # SME platform API configuration
-│   │
-│   ├── Components/            # Reusable UI components
-│   │   ├── common/            # Common UI elements
-│   │   │   ├── Button.jsx     # Reusable button component
-│   │   │   ├── Card.jsx       # Card layout component
-│   │   │   ├── Dropdown.jsx   # Custom dropdown component
-│   │   │   ├── DynamicTextarea.jsx # Auto-resizing textarea
-│   │   │   ├── Input.jsx      # Custom input component
-│   │   │   ├── LabelInput.jsx # Labeled input component
-│   │   │   └── OptionsAll.jsx # Question options component
-│   │   │
-│   │   └── Modals/            # Modal components
-│   │       ├── PreviewModal.jsx # Question preview modal
-│   │       └── ValidationModal.jsx # Form validation modal
-│   │
-│   ├── contexts/              # Global state management
-│   │   ├── LoaderContext.jsx  # Loading state management
-│   │   └── NotyfContext.jsx   # Notification system context
-│   │
-│   ├── json/                  # Static data configurations
-│   │   ├── questionData.js    # Sample question data
-│   │   └── traitStyles.js     # Question trait configurations
-│   │
-│   ├── pages/                 # Main application views
-│   │   ├── AddAssessment.jsx  # Assessment creation page
-│   │   ├── Library.jsx        # Question collection library
-│   │   └── ViewCollection.jsx # Collection detail view
-│   │
-│   ├── styles/                # Custom styling configurations
-│   │   └── tailwind.css       # Tailwind CSS customizations
-│   │
-│   ├── utils/                 # Helper functions
-│   │   ├── validators.js      # Form validation utilities
-│   │   └── helpers.js         # Helper functions
-│   │
-│   ├── App.jsx                # Root application component
-│   └── main.jsx               # Application entry point
-│
-├── public/
-│   ├── assets/
-│   │   └── images/            # Static image assets
-│   └── icons/                 # Application icons
-│
-├── package.json              # Project dependencies and scripts
-├── vite.config.js            # Vite configuration
-└── tailwind.config.js        # Tailwind CSS configuration
-
-
----
-
-### Key Directory Descriptions
-
-#### **axios/**
-- Houses API configurations and interceptors.
-- Manages different API endpoints and their configurations.
-
-#### **Components/common/**
-- Reusable UI components that maintain consistency across the application and implement common functionality patterns.
-
-#### **contexts/**
-- Global state management, including loading and notifications utilities.
-
-#### **json/**
-- Static data configurations with default values and configurations.
-
-#### **pages/**
-- Contains core functionality implementations for main application views and route-specific components.
-
-#### **styles/**
-- Custom Tailwind CSS configurations and global style definitions.
-
-#### **utils/**
-- Helper functions and form validation utilities for common operations.
-
-#### **public/**
-- Static assets including public resources and deployment assets.
-
----
-
-## QuestionForm.jsx
-
-### Overview
-
-The `QuestionForm` component is a powerful question generation interface combining AI capabilities with Excel/CSV upload functionality. It serves as the core feature for creating educational assessments efficiently.
-
-### Key Features
+#### Key Features
 
 1. **File Upload System**
-   - Supports Excel (.xlsx, .xls) and CSV formats.
-   - Automatic subject-topic mapping.
-   - Real-time file processing with upload status tracking.
-   
+   - Supports Excel (.xlsx, .xls) and CSV formats
+   - Automatic subject-topic mapping
+   - Real-time file processing
+
 2. **Question Generation**
-   - AI-powered question creation with custom context support.
-   - Integrates Bloom's Taxonomy.
-   - Multiple difficulty levels and question count configuration.
-   
-3. **Subject-Topic Management**
-   - Dynamic subject selection, topic filtering, and subtopic tagging.
-   - Hierarchical data organization.
+   - AI-powered question creation
+   - Custom context support
+   - Bloom's taxonomy integration
 
-### API Integration
+#### API Integration
 
-**Question Generation**
+**POST** `/generate-questions`
 
-# POST /generate-questions
+```json
+{
+  "topic": "string",
+  "num": "number",
+  "question_type": "string",
+  "level": "string",
+  "subject": "string",
+  "subtopic": ["string"],
+  "blooms_level": "string",
+  "context": "string",
+  "custom_instructions": "string"
+}
+```
 
-Payload: { topic: string, num: number, question_type: string, level: string, subject: string, subtopic: string[], blooms_level: string, context: string, custom_instructions: string }
+### ViewAssessment Component
 
-# GET /api/collections/user/{userId}/latest 
-# POST /api/collections 
-# POST /api/collections/{collectionId}/questions
+#### Overview
+Comprehensive interface for viewing, managing, and analyzing assessment questions.
 
-
-### Data Processing Features
-- Excel/CSV parsing.
-- Subject-topic mapping and subtopic extraction.
-- Data validation with real-time progress tracking and preview system.
-
----
-
-## ViewAssessment.jsx
-
-### Overview
-
-The `ViewAssessment` component provides a comprehensive interface for viewing, managing, and analyzing assessment questions. It features advanced filtering, recommendation generation, and detailed analytics visualization.
-
-### Key Features
+#### Key Features
 
 1. **Analytics Dashboard**
-   - Question distribution by level, subtopic analysis, trait-based categorization.
-   - Interactive filtering system.
-   
+   - Question distribution analysis
+   - Interactive filtering system
+   - Trait-based categorization
+
 2. **Question Management**
-   - View, edit, delete questions, and transfer collections.
-   
-3. **Recommendation System**
+   - CRUD operations
+   - Collection transfer
+   - PDF export
 
-# POST /generate-recommendations
+#### State Management
 
-Payload: { questionData, options, recommendations }
-
-### Advanced Features
-
-1. **Filtering System**
-   - Level-based, subtopic, and trait-based filtering.
-   - Search functionality.
-
-2. **PDF Export**
-   - Custom formatting with question organization and timestamp integration.
-
-3. **Image Handling**
-   - Preview, enlargement, and responsive display for images.
-
-### Technical Implementation
-
-**State Management:**
-```jsx
+```javascript
 const [questionData, setQuestionData] = useState([]);
 const [analytics, setAnalytics] = useState({});
 const [activeFilters, setActiveFilters] = useState({
@@ -203,3 +89,58 @@ const [activeFilters, setActiveFilters] = useState({
   traits: []
 });
 ```
+
+### AssessmentLibrary Component
+
+#### Overview
+Central hub for managing and organizing assessment collections with real-time search capabilities.
+
+#### Key Features
+
+1. **Collection Management**
+   - Real-time collection search
+   - Collection renaming
+   - Collection deletion
+   - Question count tracking
+
+#### API Integration
+
+**GET** `/api/collections/user/${userId}`
+
+**DELETE** `/api/collections/${collectionId}`
+
+**PATCH** `/api/collections/${collectionId}/name`
+
+### Search System
+- Real-time filtering
+- Name-based search
+- Question count search
+- Dynamic results update
+
+## Project Structure
+
+```
+question-uploader/
+├── src/
+│   ├── axios/                 # API configurations
+│   ├── Components/            # Reusable UI components
+│   ├── contexts/              # Global state management
+│   ├── json/                  # Static configurations
+│   ├── pages/                 # Main views
+│   ├── styles/                # CSS configurations
+│   ├── utils/                 # Helper functions
+│   ├── App.jsx               # Root component
+│   └── main.jsx              # Entry point
+├── public/                    # Static assets
+├── package.json              # Dependencies
+└── vite.config.js           # Build configuration
+```
+
+## Execute
+
+### Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start development server: `npm run dev`
+4. Build for production: `npm run build`
