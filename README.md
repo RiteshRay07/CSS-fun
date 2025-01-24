@@ -1,5 +1,5 @@
 
-# SME Question Uploader Platform
+# SME Question Uploader PlatformS
 
 A modern web application for educators to create, manage, and analyze assessment questions.
 
